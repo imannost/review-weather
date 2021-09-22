@@ -4,6 +4,8 @@ from flask import Flask, request
 import requests
 import numpy as np
 
+import config
+
 app = Flask(__name__)
 
 
@@ -66,11 +68,6 @@ def get_weather(city, start_date, end_date):
                     "unitGroup": "metric",
                     "contentType": "json"}
 
-    headers = {
-        'x-rapidapi-host': "visual-crossing-weather.p.rapidapi.com",
-        'x-rapidapi-key': "your-own-API-key"
-    }
-
-    response = requests.request("GET", url, headers=headers, params=query_string)
+    response = requests.request("GET", url, headers=config.headers, params=query_string)
 
     return response.json()
