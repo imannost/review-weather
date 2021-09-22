@@ -18,7 +18,7 @@ In this service, [Visual Crossing Weather](https://rapidapi.com/visual-crossing-
 Install reqrequirements:
 ```python -m pip install -r requirements.txt```
 
-Change **API key** in your own before you start
+Change **API key** in your own before you start in ```config.py```
 
 Use command line to change the directory
 and start the service ```flask run```
