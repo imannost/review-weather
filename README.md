@@ -1,4 +1,4 @@
-# Web service on Python
+# Web service
 
 The web service receives weather data from public API and aggregates it, after that it returns the result. The information which service gives you:
 * temperature
