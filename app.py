@@ -1,10 +1,11 @@
 import json
-from datetime import date, timedelta
-from flask import Flask, request
 import requests
-import numpy as np
+from datetime import date, timedelta
+
+from flask import Flask, request
 
 import config
+import localmath
 
 app = Flask(__name__)
 
@@ -36,22 +37,22 @@ def show_weather():
         "from": start_date.__str__(),
         "to": end_date.__str__(),
         "temperature_c": {
-            "average": round(np.average(temperature_c), 1),
-            "median": np.median(temperature_c),
-            "min": np.min(temperature_c),
-            "max": np.max(temperature_c)
+            "average": localmath.count_average(temperature_c),
+            "median": localmath.count_median(temperature_c),
+            "min": localmath.count_min(temperature_c),
+            "max": localmath.count_max(temperature_c)
         },
         "humidity": {
-            "average": round(np.average(humidity), 1),
-            "median": np.median(humidity),
-            "min": np.min(humidity),
-            "max": np.max(humidity)
+            "average": localmath.count_average(humidity),
+            "median": localmath.count_median(humidity),
+            "min": localmath.count_min(humidity),
+            "max": localmath.count_max(humidity)
         },
         "pressure_mb": {
-            "average": round(np.average(pressure_mb), 1),
-            "median": np.median(pressure_mb),
-            "min": np.min(pressure_mb),
-            "max": np.max(pressure_mb)
+            "average": localmath.count_average(pressure_mb),
+            "median": localmath.count_median(pressure_mb),
+            "min": localmath.count_min(pressure_mb),
+            "max": localmath.count_max(pressure_mb)
         }
     }
 
