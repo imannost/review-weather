@@ -54,4 +54,12 @@ and start the service ```flask run```
 }
 ```
 
+### Docker
+**Docker image**
+Use command line to run docker image
+In Linux :
+```docker run -p 8080:5000 imannost/weather```
 
+The service is running on http:/localhost:8080/
+
+Request's example:```http:/localhost:8080/weather?city=Anapa&days=5```
