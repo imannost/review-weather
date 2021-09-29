@@ -15,13 +15,15 @@ In this service, [Visual Crossing Weather](https://rapidapi.com/visual-crossing-
 
 ### Available Scripts
 **Repository**
+
 Install reqrequirements:
 ```python -m pip install -r requirements.txt```
 
 Use command line to change the directory
 and start the service ```flask run```
 
-***Docker***
+**Docker**
+
 Use command line to run docker image
 
 In Linux :
