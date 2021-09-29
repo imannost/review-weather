@@ -56,12 +56,9 @@ and start the service ```flask run```
 
 ### Docker
 **Docker image**
-Use command line to change directory with project and build docker image
+Use command line to run docker image
 In Linux :
-```docker build -t weather .```
-
-To run docker :
-```docker run -p 8080:5000 weather```
+```docker run -p 8080:5000 imannost/weather```
 
 The service is running on http:/localhost:8080/
 
