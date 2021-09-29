@@ -14,14 +14,24 @@ and their:
 In this service, [Visual Crossing Weather](https://rapidapi.com/visual-crossing-corporation-visual-crossing-corporation-default/api/visual-crossing-weather/) was used as a public API. 
 
 ### Available Scripts
+**Repository**
 
 Install reqrequirements:
 ```python -m pip install -r requirements.txt```
 
-Change **API key** in your own before you start in ```config.py```
-
 Use command line to change the directory
 and start the service ```flask run```
+
+**Docker**
+
+Use command line to run docker image
+
+In Linux :
+```docker run -p 8080:5000 -e API-KEY=<your-own-api-key> imannost/weather```
+
+The service is running on http:/localhost:8080/
+
+Request's example:```http:/localhost:8080/weather?city=Anapa&days=5```
 
 ### Formats
 **Request's format:**
@@ -54,12 +64,3 @@ and start the service ```flask run```
 }
 ```
 
-### Docker
-**Docker image**
-Use command line to run docker image
-In Linux :
-```docker run -p 8080:5000 imannost/weather```
-
-The service is running on http:/localhost:8080/
-
-Request's example:```http:/localhost:8080/weather?city=Anapa&days=5```
