@@ -20,7 +20,7 @@ def show_weather():
     city = request.args.get('city')
     n_days = int(request.args.get('days'))
     end_date = date.today()
-    start_date = end_date - timedelta(days=n_days)
+    start_date = end_date - timedelta(days=n_days) + 1
 
     response = get_weather(city, start_date.__str__(), end_date.__str__())
 
