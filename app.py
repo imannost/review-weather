@@ -1,10 +1,10 @@
 import json
 import requests
+import os
 from datetime import date, timedelta
 
 from flask import Flask, request
 
-import config
 import localmath
 
 app = Flask(__name__)
@@ -20,7 +20,7 @@ def show_weather():
     city = request.args.get('city')
     n_days = int(request.args.get('days'))
     end_date = date.today()
-    start_date = end_date - timedelta(days=n_days) + 1
+    start_date = end_date - timedelta(days=n_days)
 
     response = get_weather(city, start_date.__str__(), end_date.__str__())
 
@@ -55,7 +55,7 @@ def show_weather():
             "max": localmath.count_max(pressure_mb)
         }
     }
-
+    
     return json.dumps(weather, indent=4)
 
 
@@ -69,6 +69,11 @@ def get_weather(city, start_date, end_date):
                     "unitGroup": "metric",
                     "contentType": "json"}
 
-    response = requests.request("GET", url, headers=config.headers, params=query_string)
+    headers = {
+        'x-rapidapi-host': "visual-crossing-weather.p.rapidapi.com",
+        'x-rapidapi-key': os.environ['API-KEY']
+    }
+
+    response = requests.request("GET", url, headers=headers, params=query_string)
 
     return response.json()
