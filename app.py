@@ -1,8 +1,6 @@
-import json
-import requests
 import os
 from datetime import date, timedelta
-
+import requests
 from flask import Flask, request
 
 import localmath
@@ -55,8 +53,8 @@ def show_weather():
             "max": localmath.count_max(pressure_mb)
         }
     }
-    
-    return json.dumps(weather, indent=4)
+
+    return weather
 
 
 def get_weather(city, start_date, end_date):
