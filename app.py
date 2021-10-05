@@ -54,7 +54,7 @@ def show_weather():
         }
     }
 
-    return weather
+    return "hello"
 
 
 def get_weather(city, start_date, end_date):
