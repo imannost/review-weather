@@ -1,20 +1,29 @@
 pipeline {
   agent any
+  environment{
+    DOCKERHUB_CREDENTIALS = credentials('DockerHub')
+  }
   stages {
-    stage('Building image') {
+    stage('Build') {
       steps{
-        sh 'docker build -t imannost/weather .'
+        sh 'docker build -t imannost/weather:latest .'
       }
     }
-    stage('Docker Push') {
-      agent any
+    stage('Login') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'DockerHubPassword', usernameVariable: 'DockerHubUser')]) {
-          sh "docker login -u ${env.DockerHubUser} -p ${env.DockerHubPassword}"
-          sh 'docker push imannost/weather:latest'
-        }
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
+    stage('Push') {
+      steps {
+        sh 'docker push imannost/weather:latest'
+      }
+    }
+  }
+}
+post {
+  always {
+    sh 'docker logout'
   }
 }
 
