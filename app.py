@@ -54,7 +54,7 @@ def show_weather():
         }
     }
 
-    # return weather
+
     return weather
 
 
