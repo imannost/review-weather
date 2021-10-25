@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Build') {
       steps{
-        sh 'docker build -t imannost/weather:latest .'
+        sh 'docker build -t imannost/weather:v1 .'
       }
     }
     stage('Login') {
@@ -16,13 +16,14 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push imannost/weather:latest'
+        sh 'docker push imannost/weather:v1'
       }
     }
   }
   post {
     always {
       sh 'docker logout'
+      cleanWs()
     }
   }
 }
