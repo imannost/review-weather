@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Build') {
       steps{
-        sh 'docker build -t imannost/weather:v1 .'
+        sh 'docker build -t imannost/weather:1.0 .'
       }
     }
     stage('Login') {
@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push imannost/weather:v1'
+        sh 'docker push imannost/weather:1.0'
       }
     }
   }
