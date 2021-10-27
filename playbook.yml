@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: 94.26.239.183
   tasks:
   - name: Deploy the service
     k8s:
