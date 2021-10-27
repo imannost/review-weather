@@ -26,12 +26,7 @@ pipeline {
                    sh "ansible-playbook  playbook.yml --extra-vars \"image_id=${image_id}\""
                }
            }
-       }
-   }
-}
-               }
-           }
-       }
+    }
   }
   post {
     always {
