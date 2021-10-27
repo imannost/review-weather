@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: ""
+        image: imannost/weather:v1.0
         resources:
           requests:
             cpu: 10m
