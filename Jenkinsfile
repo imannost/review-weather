@@ -19,6 +19,13 @@ pipeline {
         sh 'docker push imannost/weather:v1.0'
       }
     }
+    stage ('Deploy') {
+           steps {
+               script{
+                   sh "ansible-playbook  playbook.yml --extra-vars imannost/weather:v1.0"
+               }
+           }
+       }
   }
   post {
     always {
