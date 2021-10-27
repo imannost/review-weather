@@ -1,19 +1,14 @@
 - hosts: localhost
-  collections:
-    - kubernetes.core
   tasks:
-    - name: Create a pod
-      k8s:
-        state: present
-        definition:
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: "weather-service"
-            namespace: default
-            labels:
-              app: galaxy
-          spec:
-            containers:
-              - name: weather
-                image: imannost/weather:v1.0
+  - name: Deploy the service
+    k8s:
+      state: present
+      definition: ""
+      validate_certs: no
+      namespace: default
+  - name: Deploy the application
+    k8s:
+      state: present
+      validate_certs: no
+      namespace: default
+      definition: ""
