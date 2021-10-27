@@ -20,12 +20,9 @@ pipeline {
       }
     }
     stage ('Deploy') {
-           steps {
-               script{
-                   def image_id = "imannost/weather:v1.0"
-                   sh "ansible-playbook  playbook.yml --extra-vars \"image_id=${image_id}\""
-               }
-           }
+      steps {
+        sh "ansible-playbook  playbook.yml --extra-vars imannost/weather:v1.0"
+      }
     }
   }
   post {
