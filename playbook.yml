@@ -1,4 +1,4 @@
-- hosts: node-0
+- hosts: 192.168.0.2
   tasks:
   - name: Deploy the service
     k8s:
