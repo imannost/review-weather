@@ -22,7 +22,7 @@ pipeline {
     stage ('Deploy') {
            steps {
                script{
-                   sh "ansible-playbook  playbook.yml --extra-vars imannost/weather:v1.0 -i -i 192.168.0.2"
+                   sh "ansible-playbook  playbook.yml --extra-vars imannost/weather:v1.0"
                }
            }
        }

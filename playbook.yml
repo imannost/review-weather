@@ -1,4 +1,4 @@
-- hosts: 192.168.0.2
+- hosts: localhost
   tasks:
   - name: Deploy the service
     k8s:
