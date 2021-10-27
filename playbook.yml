@@ -3,17 +3,17 @@
     - kubernetes.core
   tasks:
     - name: Create a pod
-        k8s:
-          state: present
-          definition:
-            apiVersion: v1
-            kind: Pod
-            metadata:
-              name: "weather-service"
-              namespace: default
-              labels:
-                app: galaxy
-            spec:
-              containers:
-                - name: weather
-                  image: imannost/weather:v1.0
+      k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Pod
+          metadata:
+            name: "weather-service"
+            namespace: default
+            labels:
+              app: galaxy
+          spec:
+            containers:
+              - name: weather
+                image: imannost/weather:v1.0
