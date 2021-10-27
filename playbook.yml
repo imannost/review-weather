@@ -1,19 +1,14 @@
 - hosts: localhost
-  collections:
-    - kubernetes.core
   tasks:
-  - name: Create a pod
+  - name: Deploy the service
     k8s:
       state: present
-      definition:
-        apiVersion: v1
-        kind: Pod
-        metadata:
-          name: "weather"
-          namespace: default
-          labels:
-            app: galaxy
-        spec:
-          containers:
-          - name: imannost/weather
-            image: imannost/weather
+      definition: "{{ lookup('template', 'service.yml') | from_yaml }}"
+      validate_certs: no
+      namespace: default
+  - name: Deploy the application
+    k8s:
+      state: present
+      validate_certs: no
+      namespace: default
+      definition: "{{ lookup('template', 'deployment.yml') | from_yaml }}"
