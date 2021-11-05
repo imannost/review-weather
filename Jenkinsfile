@@ -23,9 +23,12 @@ pipeline {
     }
     stage ('Deploy') {
       steps {
-        withKubeConfig([credentialsId: 'jenkins-deployer-credentials', serverUrl: 'http://94.26.239.183']) {
-          sh 'ansible-playbook  playbook.yml --extra-vars $IMAGE_BASE:$IMAGE_TAG'
-        }
+        withKubeConfig([
+          credentialsId: 'jenkins-deployer-credentials',
+          serverUrl: 'http://94.26.239.183',
+          namespace: 'weather-production']) {
+            sh 'kubectl get pods'
+            }
       }
     }
   }
