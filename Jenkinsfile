@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment{
     DOCKERHUB_CREDENTIALS = credentials('DockerHub')
-    IMAGE_TAG = 'v$BUILD_NUMBER'
+    IMAGE_TAG = "v$BUILD_NUMBER"
     IMAGE_BASE = 'imannost/weather'
   }
   stages {
