@@ -27,7 +27,7 @@ pipeline {
           credentialsId: 'jenkins-deployer-credentials',
           serverUrl: 'https://94.26.239.183:6443',
           namespace: 'weather-production']) {
-            sh 'kubectl get pods'
+            sh 'kubectl get nodes'
             }
       }
     }
