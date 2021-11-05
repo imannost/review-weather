@@ -25,7 +25,7 @@ pipeline {
       steps {
         withKubeConfig([
           credentialsId: 'jenkins-deployer-credentials',
-          serverUrl: 'http://94.26.239.183',
+          serverUrl: 'https://94.26.239.183:6443',
           namespace: 'weather-production']) {
             sh 'kubectl get pods'
             }
