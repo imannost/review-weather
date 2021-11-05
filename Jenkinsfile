@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps{
-        sh 'docker build -t ${env.IMAGE_NAME} .'
+        sh 'docker build -t imannost/weather:v1.0 .'
       }
     }
     stage('Login') {
