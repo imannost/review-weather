@@ -4,7 +4,7 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('DockerHub')
     IMAGE_TAG = 'v$BUILD_NUMBER'
     IMAGE_BASE = 'imannost/weather'
-    IMAGE_NAME = '${env.IMAGE_BASE}:${env.IMAGE_TAG}'
+    IMAGE_NAME = '$IMAGE_BASE:$IMAGE_TAG'
   }
   stages {
     stage('Build') {
