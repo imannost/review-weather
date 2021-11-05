@@ -4,12 +4,12 @@ pipeline {
     DOCKERHUB_CREDENTIALS = credentials('DockerHub')
     IMAGE_TAG = 'v$BUILD_NUMBER'
     IMAGE_BASE = 'imannost/weather'
-    IMAGE_NAME = "${env.IMAGE_BASE}:${env.IMAGE_TAG}"
+    IMAGE_NAME = '${env.IMAGE_BASE}:${env.IMAGE_TAG}'
   }
   stages {
     stage('Build') {
       steps{
-        sh 'docker build -t imannost/weather:v1.0 .'
+        sh 'docker build -t $IMAGE_NAME .'
       }
     }
     stage('Login') {
