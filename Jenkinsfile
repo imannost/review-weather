@@ -2,11 +2,14 @@ pipeline {
   agent any
   environment{
     DOCKERHUB_CREDENTIALS = credentials('DockerHub')
+    IMAGE_TAG = "v$BUILD_NUMBER"
+    IMAGE_BASE = 'imannost/weather'
+    IMAGE_NAME = "${env.IMAGE_BASE}:${env.IMAGE_TAG}"
   }
   stages {
     stage('Build') {
       steps{
-        sh 'docker build -t imannost/weather:v1.0 .'
+        sh 'docker build -t ${env.IMAGE_NAME} .'
       }
     }
     stage('Login') {
@@ -14,14 +17,16 @@ pipeline {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
-    stage('Push') {
+    stage('Publish') {
       steps {
-        sh 'docker push imannost/weather:v1.0'
+        sh 'docker push ${env.IMAGE_NAME}'
       }
     }
     stage ('Deploy') {
       steps {
-        sh "ansible-playbook  playbook.yml --extra-vars imannost/weather:v1.0"
+        withKubeConfig([credentialsId: 'jenkins-deployer-credentials', serverUrl: 'http://94.26.239.183']) {
+          sh "ansible-playbook  playbook.yml --extra-vars ${env.IMAGE_NAME}"
+        }
       }
     }
   }
