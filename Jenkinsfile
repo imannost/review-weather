@@ -23,11 +23,15 @@ pipeline {
     }
     stage ('Deploy') {
       steps {
-        withKubeConfig([
-          credentialsId: 'jenkins-deployer-credentials',
-          serverUrl: 'https://94.26.239.183:6443']) {
-             sh 'ansible-playbook  playbook.yml --extra-vars $IMAGE_BASE:$IMAGE_TAG'
+        sshagent([credentialsId: 'node-0-cred']) {
+          sh 'scp -r -o StrictHostKeyChecking=no playbook.yml service.yml deployment.yml root@94.26.239.183:/root/k8s'
+          script {
+            try {
+            //  sh 'ssh root@94.26.239.183 kubectl apply -f /root/k8s/deployment.yaml /root/k8s/playbook.yml  /root/k8s/service.yml --kubeconfig=/root/.kube/config'
+              sh 'ansible-playbook  playbook.yml --extra-vars $IMAGE_BASE:$IMAGE_TAG'
+            } catch(error) { }
           }
+        }
       }
     }
   }
