@@ -23,7 +23,7 @@ pipeline {
     }
     stage ('Deploy') {
       steps {
-        sshagent([credentialsId: 'node-0-cred']) {
+        sshagent(['node-0-cred']) {
           sh 'scp -r -o StrictHostKeyChecking=no playbook.yml service.yml deployment.yml root@94.26.239.183:/root/k8s'
           script {
             try {
