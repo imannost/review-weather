@@ -23,7 +23,7 @@ pipeline {
     }
     stage ('Deploy') {
       steps {
-        withKubeConfig([credentialsId: 'node-dev-cred', serverUrl: 'https://94.26.239.183:6443']) {
+        withKubeConfig([credentialsId: 'kube-cred', serverUrl: 'https://94.26.239.183:6443']) {
           sh 'ansible-playbook  playbook.yml --extra-vars $IMAGE_BASE:$IMAGE_TAG'
         }
       }
