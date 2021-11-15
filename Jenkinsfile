@@ -24,7 +24,9 @@ pipeline {
     stage ('Deploy') {
       steps {
         withKubeConfig([credentialsId: 'kube-cred', serverUrl: 'https://94.26.239.183:6443']) {
-          sh 'ansible-playbook  playbook.yml --extra-vars $IMAGE_BASE:$IMAGE_TAG'
+          sh 'export DOCKER_IMAGE = $IMAGE_BASE:$IMAGE_TAG'
+          sh 'envsubst < deployment.yml | kubectl apply -f -'
+          sh 'envsubst < service.yml | kubectl apply -f -'
         }
       }
     }

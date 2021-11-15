@@ -16,6 +16,9 @@ spec:
     spec:
       containers:
       - name: app
-        image: "{{ image_id }}"
+        image: $DOCKER_IMAGE
         ports:
           - containerPort: 80
+        envFrom:
+          - secretRef:
+              name: api-key
