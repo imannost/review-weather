@@ -26,10 +26,10 @@ pipeline {
         withKubeConfig([credentialsId: 'kube-cred', serverUrl: 'https://94.26.239.183:6443']) {
           sh '''
           #!/bin/sh
-          export DOCKER_IMAGE=$IMAGE_BASE:$IMAGE_TAG
+          export IMAGE_TAG=:$IMAGE_TAG
           '''
-          sh 'cat deployment.yml | sed "s/{{DOCKER_IMAGE}}/$DOCKER_IMAGE/g" | kubectl apply -f -'
-        //  sh 'envsubst < deployment.yml | kubectl apply -f -'
+          sh 'cat app-deployment.yaml | sed "s/{{$IMAGE_TAG}}/${$IMAGE_TAG:=v1}/g" | kubectl apply -f -'
+          sh 'envsubst < deployment.yml | kubectl apply -f -'
           sh 'envsubst < service.yml | kubectl apply -f -'
         }
       }
