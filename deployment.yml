@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: imannost/weather:{{$IMAGE_TAG}}
+        image: imannost/weather:v1
         ports:
           - containerPort: 80
         envFrom:
