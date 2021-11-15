@@ -26,7 +26,7 @@ pipeline {
         withKubeConfig([credentialsId: 'kube-cred', serverUrl: 'https://94.26.239.183:6443']) {
           sh '''
           #!/bin/sh
-          export DOCKER_IMAGE=$IMAGE_BASE:$IMAGE_TAG'
+          export DOCKER_IMAGE=$IMAGE_BASE:$IMAGE_TAG
           '''
           sh 'envsubst < deployment.yml | kubectl apply -f -'
           sh 'envsubst < service.yml | kubectl apply -f -'
