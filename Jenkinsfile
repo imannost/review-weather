@@ -28,7 +28,7 @@ pipeline {
           #!/bin/sh
           export DOCKER_IMAGE=$IMAGE_BASE:$IMAGE_TAG
           '''
-          sh 'cat deployment.yaml | sed "s/{{DOCKER_IMAGE}}/$DOCKER_IMAGE/g" | kubectl apply -f -'
+          sh 'cat deployment.yml | sed "s/{{DOCKER_IMAGE}}/$DOCKER_IMAGE/g" | kubectl apply -f -'
         //  sh 'envsubst < deployment.yml | kubectl apply -f -'
           sh 'envsubst < service.yml | kubectl apply -f -'
         }
