@@ -25,11 +25,10 @@ pipeline {
       steps {
         withKubeConfig([credentialsId: 'kube-cred', serverUrl: 'https://94.26.239.183:6443']) {
           sh '''
-          #!/bin/sh
-          export IMAGE=$IMAGE_BASE:$IMAGE_TAG
-
-          envsubst < deployment.yml | kubectl apply -f -
-          envsubst < service.yml | kubectl apply -f -
+            #!/bin/sh
+            export IMAGE=$IMAGE_BASE:$IMAGE_TAG
+            kubectl apply -f deployment.yml
+            kubectl apply -f service.yml
           '''
         }
       }
