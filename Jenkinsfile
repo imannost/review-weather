@@ -28,7 +28,7 @@ pipeline {
           #!/bin/sh
           export IMAGE_TAG=:$IMAGE_TAG
           '''
-          sh 'cat app-deployment.yaml | sed "s/{{$IMAGE_TAG}}/${$IMAGE_TAG:=v1}/g" | kubectl apply -f -'
+          sh 'cat deployment.yml | sed "s/{{$IMAGE_TAG}}/${$IMAGE_TAG:=v1}/g" | kubectl apply -f -'
           sh 'envsubst < deployment.yml | kubectl apply -f -'
           sh 'envsubst < service.yml | kubectl apply -f -'
         }
