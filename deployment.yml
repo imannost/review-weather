@@ -18,7 +18,7 @@ spec:
       - name: weather
         image: imannost/weather:v67
         ports:
-          - containerPort: 80
+          - containerPort: 5000
         env:
           - name: API-KEY
             valueFrom:
