@@ -21,4 +21,4 @@ spec:
           - containerPort: 80
         envFrom:
           - secretRef:
-            name: api-key
+              name: api-key
