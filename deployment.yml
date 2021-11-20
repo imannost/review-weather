@@ -23,4 +23,5 @@ spec:
           - name: API-KEY
             valueFrom:
               secretRef:
-                name: api-key
+                name: api-secret
+                key: api-key

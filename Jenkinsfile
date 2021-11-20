@@ -24,12 +24,7 @@ pipeline {
     stage ('Deploy') {
       steps {
         withKubeConfig([credentialsId: 'kube-cred', serverUrl: 'https://94.26.239.183:6443']) {
-          sh '''
-            #!/bin/sh
-            export IMAGE=$IMAGE_BASE:$IMAGE_TAG
-            kubectl apply -f deployment.yml
-            kubectl apply -f service.yml
-          '''
+          sh 'kubectl set image deployment/weather-deployment weather=$IMAGE_BASE:$IMAGE_TAG --record'
         }
       }
     }
