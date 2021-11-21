@@ -26,7 +26,7 @@ pipeline {
         withKubeConfig([credentialsId: 'kube-cred', serverUrl: 'https://94.26.239.183:6443']) {
           sh 'kubectl apply -f deployment.yml'
           sh 'kubectl apply -f service.yml'
-          sh 'kubectl set image deployment/weather-deployment -n=weather-deploy weather=$IMAGE_BASE:$IMAGE_TAG --record'
+          sh 'kubectl set image deployment/weather-deployment weather=$IMAGE_BASE:$IMAGE_TAG --record'
         }
       }
     }
