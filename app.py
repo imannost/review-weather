@@ -70,7 +70,7 @@ def get_weather(city, start_date, end_date):
 
     headers = {
         'x-rapidapi-host': "visual-crossing-weather.p.rapidapi.com",
-        'x-rapidapi-key': os.environ['API-KEY']
+        'x-rapidapi-key': os.environ.get('API-KEY')
     }
 
     response = requests.request("GET", url, headers=headers, params=query_string)
