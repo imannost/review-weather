@@ -59,7 +59,7 @@ def show_weather():
 
 
 def get_weather(city, start_date, end_date):
-    url = "https://visual-crossing-weather.p.rapidapi.com/history"
+    url = "https://visual-crossing-weather.p.rapidapi.com/forecast"
 
     query_string = {"startDateTime": start_date,
                     "aggregateHours": "24",
@@ -69,8 +69,8 @@ def get_weather(city, start_date, end_date):
                     "contentType": "json"}
 
     headers = {
-        'x-rapidapi-host': "visual-crossing-weather.p.rapidapi.com",
-        'x-rapidapi-key': os.environ['API-KEY']
+        'X-RapidAPI-Host': "visual-crossing-weather.p.rapidapi.com",
+        'X-RapidAPI-Key': os.environ['API-KEY']
     }
 
     response = requests.request("GET", url, headers=headers, params=query_string)
